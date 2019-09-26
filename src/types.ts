@@ -27,7 +27,9 @@ type Options = {
   prefix?: string
   reconnectInterval?: number
   reconnectOnClose?: boolean
+  numOfAttempts?: number
   onOpen?: (s: WebSocket) => void
+  backoff?: (attempt: number, delay: number) => number
 }
 
 // Huh? https://github.com/babel/babel/issues/6065#issuecomment-453901877

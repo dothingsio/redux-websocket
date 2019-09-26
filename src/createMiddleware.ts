@@ -1,9 +1,9 @@
-import { Middleware, MiddlewareAPI } from 'redux';
+import { Middleware, MiddlewareAPI } from "redux";
 
-import { Action, Options } from './types';
-import { error } from './actions';
-import * as actionTypes from './actionTypes';
-import ReduxWebSocket from './ReduxWebSocket';
+import { Action, Options } from "./types";
+import { error } from "./actions";
+import * as actionTypes from "./actionTypes";
+import ReduxWebSocket from "./ReduxWebSocket";
 
 /**
  * Default middleware creator options.
@@ -12,7 +12,7 @@ import ReduxWebSocket from './ReduxWebSocket';
 const defaultOptions = {
   reconnectInterval: 2000,
   reconnectOnClose: false,
-  prefix: actionTypes.DEFAULT_PREFIX,
+  prefix: actionTypes.DEFAULT_PREFIX
 };
 
 /**
@@ -34,7 +34,7 @@ export default (rawOptions?: Options): Middleware => {
   const handlers = {
     [actionTypes.WEBSOCKET_CONNECT]: reduxWebsocket.connect,
     [actionTypes.WEBSOCKET_DISCONNECT]: reduxWebsocket.disconnect,
-    [actionTypes.WEBSOCKET_SEND]: reduxWebsocket.send,
+    [actionTypes.WEBSOCKET_SEND]: reduxWebsocket.send
   };
 
   // Middleware function.
@@ -44,7 +44,7 @@ export default (rawOptions?: Options): Middleware => {
 
     // Check if action type matches prefix
     if (actionType && actionType.match(actionPrefixExp)) {
-      const baseActionType = action.type.replace(actionPrefixExp, '');
+      const baseActionType = action.type.replace(actionPrefixExp, "");
       const handler = Reflect.get(handlers, baseActionType);
 
       if (handler) {
