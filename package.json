@@ -1,6 +1,6 @@
 {
   "name": "@braceta/redux-websocket",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A redux middleware to handle websocket connections",
   "main": "dist",
   "files": [
@@ -17,10 +17,9 @@
     "prepare": "npm run build",
     "test": "jest --coverage"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/braceta/redux-websocket.git"
+    "url": "git+https://github.com/giantmachines/redux-websocket.git"
   },
   "keywords": [
     "redux"
