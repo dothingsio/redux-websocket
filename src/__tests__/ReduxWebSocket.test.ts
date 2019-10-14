@@ -349,7 +349,7 @@ describe("ReduxWebSocket", () => {
       jest.advanceTimersByTime(2328000);
 
       // Make sure we actually check all of the calls to `dispatch`.
-      expect(dispatch).toHaveBeenCalledTimes(6);
+      expect(dispatch).toHaveBeenCalledTimes(7);
     });
   });
 });

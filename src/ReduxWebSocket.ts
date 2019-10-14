@@ -224,7 +224,7 @@ export default class ReduxWebSocket {
     // Attempt reconnecting on an interval.
     const reconnectFn = () => {
       this.reconnectCount += 1;
-      if (numOfAttempts && this.reconnectionInterval && this.reconnectCount >= numOfAttempts) {
+      if (numOfAttempts && this.reconnectionInterval && this.reconnectCount > numOfAttempts) {
         clearInterval(this.reconnectionInterval);
         return;
       }
@@ -234,9 +234,9 @@ export default class ReduxWebSocket {
       // Call connect again, same way.
       this.connect({ dispatch } as MiddlewareAPI, { payload: { url: this.lastSocketUrl } } as Action);
       if (this.reconnectionInterval) {
-        // clearInterval(this.reconnectionInterval);
-        timeInterval = backoff ? backoff(this.reconnectCount, timeInterval) : reconnectInterval;
-        // this.reconnectionInterval = setInterval(reconnectFn, timeInterval);
+        timeInterval = backoff ? backoff(this.reconnectCount, timeInterval) : timeInterval;
+        clearInterval(this.reconnectionInterval);
+        this.reconnectionInterval = setInterval(reconnectFn, timeInterval);
       }
     };
 
